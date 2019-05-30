@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\setlength{\textwidth}{17.0cm}  
+\setlength{\oddsidemargin}{-0.1cm}  
+\setlength{\textheight}{23.0cm}  
+\setlength{\topmargin}{-1.0in}
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{2}
+
+
+\usepackage[pdftex]{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage{bm}
+\usepackage{graphicx}
+\graphicspath{./images}
+\usepackage{float}
+\restylefloat{figure}
+\newcommand{\xTilda}{\tilde{\bm{x}}}
+\newcommand{\zZ}{Z^\star}
+\newcommand{\zz}{z^\star}
+\usepackage[labelfont=bf]{caption}
+\usepackage{ upgreek }
+\usepackage{float}
+\restylefloat{table}
+\usepackage{ textcomp }
+\usepackage{amsbsy}
+\usepackage{stackrel}
+
+\begin{document}
+		\title{\bf Application of Bivariate Conway Maxwell Poisson distribution using automobile dataset }
+\author{{\bf Xinyi Wang}\\Department of Mathematics \& Statistics \\McMaster University\\Hamiltion, Ontario, Canada L8S 4K1\\}
+\date{\today}
+\maketitle
+\vspace{5cm}
+
+
+
+\newpage
+\section{Introduction}
+
+
+
+\section{Simulation}
+\begin{table}[H]
+	\begin{center}
+		\caption[\textbf{1}]
+		{The maximum likelihood estimates and log-likelihood values for the Bivariate Poission, bivariate Bernoulli, bivariate Geometric and bivariate COM-Poission models using simulated Poisson dataset }
+		\small
+		\vspace{-1em}
+		\begin{tabular}{lllll}
+			\hline	\hline
+			\textbf{MLEs} &\textbf{Bivariate Poisson}  & \textbf{Bivariate Bernoulli}&\textbf{Bivariate Geometric}& \textbf{Bivariate COM-Poisson}   \\
+			\hline
+			$\hat{\lambda}_1$&	1.756  & && \\
+			$\hat{\lambda}_2$ & 2.181 & && \\
+			$\hat{\lambda}_3$  & 4.154   & &&	 \\
+			$\hat{\lambda}$  &  &   &&15.681\\
+			$\nu$ &  &  &&1.203\\
+			$\hat{p}_{00}$  &  & &&0.00\\
+			$\hat{p}_{10}$ &&&&0.395\\
+			$\hat{p}_{01}$ &&&&0.081\\
+			$\hat{p}_{11}$ &&&&0.524\\
+			Ln$L$ &-2316.578&&&-2189.756\\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption[\textbf{2}]
+		{The maximum likelihood estimates and log-likelihood values for the Bivariate Poission, bivariate Bernoulli, bivariate Geometric and bivariate COM-Poission models using simulated Poisson dataset }
+		\small
+		\vspace{-1em}
+		\begin{tabular}{lllll}
+			\hline	\hline
+			\textbf{MLEs} &\textbf{Bivariate Poisson}  & \textbf{Bivariate Bernoulli}&\textbf{Bivariate Geometric}& \textbf{Bivariate COM-Poisson}   \\
+			\hline
+			$\hat{\lambda}_1$&	1.756  & 1.270&& \\
+			$\hat{\lambda}_2$ & 2.181 & && \\
+			$\hat{\lambda}_3$  & 4.154   & &&	 \\
+			$\hat{\lambda}$  &  &   &&15.681\\
+			$\nu$ &  &  &&1.203\\
+			$\hat{p}_{00}$  &  & &&0.00\\
+			$\hat{p}_{10}$ &&&&0.395\\
+			$\hat{p}_{01}$ &&&&0.081\\
+			$\hat{p}_{11}$ &&&&0.524\\
+			Ln$L$ &-2316.578&&&-2189.756\\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\newpage
+\section{Reference}
+P. Holgate. (1964). Estimation for the bivariate Poisson distribution, Biometrika \textbf{51}, 241–245.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
