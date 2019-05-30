@@ -1,0 +1,59 @@
+---
+title: "Thesis"
+author: "Xinyi Wang"
+date: '2019-05-30'
+output: html_document
+---
+
+
+```{r poission, include=TRUE}
+
+library(stats)
+
+#set up data with lamb= 1,3,5
+Pois1<-rpois(500,1)
+Pois2<-rpois(500,3)
+Pois3<-rpois(500,5)
+
+#set up the X and Y to be bivariate distribution （P. Holgate. (1964)）
+X<-Pois1+Pois3
+Y<-Pois2+Pois3
+
+#rang, mean, variance, and empeirical dispersion of X and Y 
+range(X)
+range(Y)
+
+mean(X) 
+mean(Y) 
+
+var(X) 
+var(Y) 
+ 
+
+
+as.matrix(X)
+as.matrix(Y)
+cor(as.matrix(X),as.matrix(Y)) 
+#dispersion 
+```
+
+```{r poission mle,include=TRUE}
+
+library(poilog)
+library(stats)
+
+
+#calculate the MLE of Bi-poission(X,Y)
+bipoilogMLE(X,Y,startVals = c(mu1=0,mu2=1,sig1=1,sig2=1,rho=0.5))
+```
+
+```{r bivariate ,include=TRUE}
+library(glmmTMB)
+
+
+
+library(MM)
+
+```
+
+
