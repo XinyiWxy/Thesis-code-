@@ -6,7 +6,7 @@ output: html_document
 ---
 
 
-```{r poission, include=TRUE}
+```{r poission data, include=TRUE}
 
 library(stats)
 
@@ -19,7 +19,7 @@ Pois3<-rpois(500,5)
 X<-Pois1+Pois3
 Y<-Pois2+Pois3
 
-#rang, mean, variance, and empeirical dispersion of X and Y 
+#range, mean, variance, and empeirical dispersion of X and Y 
 range(X)
 range(Y)
 
@@ -37,23 +37,62 @@ cor(as.matrix(X),as.matrix(Y))
 #dispersion 
 ```
 
-```{r poission mle,include=TRUE}
-
-library(poilog)
-library(stats)
-
-
-#calculate the MLE of Bi-poission(X,Y)
-bipoilogMLE(X,Y,startVals = c(mu1=0,mu2=1,sig1=1,sig2=1,rho=0.5))
-```
-
-```{r bivariate ,include=TRUE}
+```{r bivariate bernoulli data,include=TRUE}
 library(glmmTMB)
 
-
-
+#generate data 
 library(MM)
 
 ```
 
 
+```{r bivariate geometric data, include=TRUE}
+
+
+```
+
+
+
+```{r MLE using Bi-Poission data,include=TRUE}
+library(poilog)
+library(stats)
+
+
+# MLE of Bi-poission(X,Y) 
+bipoilogMLE(X,Y,startVals = c(mu1=0,mu2=1,sig1=1,sig2=1,rho=0.5))
+
+#MLE of Bi-Bernoulli
+
+#MLE of Bi-Geometric 
+
+#MLE of COM-Poission 
+```
+
+
+
+```{r MLE using Bi-Bernoulli data,include=TRUE}
+library(poilog)
+library(stats)
+
+
+# MLE of Bi-poission(X,Y) 
+
+#MLE of Bi-Bernoulli
+
+#MLE of Bi-Geometric 
+
+#MLE of COM-Poission 
+
+```
+
+
+```{r MLE using Bi-Geometric data,include=TRUE}
+
+# MLE of Bi-poission(X,Y) 
+
+#MLE of Bi-Bernoulli
+
+#MLE of Bi-Geometric 
+
+#MLE of COM-Poission 
+```
