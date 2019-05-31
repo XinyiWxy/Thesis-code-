@@ -1,0 +1,116 @@
+---
+title: "Thesis_version1"
+author: "Xinyi Wang"
+date: '2019-05-30'
+output: html_document
+---
+
+
+
+```{r poission data, include=TRUE}
+
+library(stats)
+
+#set up data with lamb= 1,4,5
+Pois1<-rpois(500,1)
+Pois2<-rpois(500,4)
+Pois3<-rpois(500,5)
+
+#set up the X and Y to be bivariate distribution （P. Holgate. (1964)）
+X<-Pois1+Pois3
+Y<-Pois2+Pois3
+
+#range, mean, variance, and empeirical dispersion of X and Y 
+range(X)
+range(Y)
+
+mean(X) 
+mean(Y) 
+
+var(X) 
+var(Y) 
+ 
+
+
+as.matrix(X)
+as.matrix(Y)
+cor(as.matrix(X),as.matrix(Y)) 
+#dispersion 
+```
+
+```{r bivariate bernoulli data,include=TRUE}
+library(glmmTMB)
+
+#generate data 
+library(MM)
+
+```
+
+
+```{r bivariate geometric data, include=TRUE}
+
+
+```
+
+
+
+```{r MLE using Bi-Poission data,include=TRUE}
+library(poilog)
+library(stats)
+library(multicmp)
+
+# MLE of Bi-poission(X,Y) 
+
+XY1<-rbipoilog(500,mu1 = 1,mu2=4,sig1=1,sig2=1,rho=0.5)
+MLE.BP0<-bipoilogMLE(XY1)
+cbind(MLE.BP0$par[1],MLE.BP0$par[2],mean(X)-MLE.BP0$par[1],mean(Y)-MLE.BP0$par[2])
+
+#MLE of Bi-Bernoulli
+ 
+#MLE of Bi-Geometric 
+
+#MLE of COM-Poission 
+XY<-cbind(X,Y)
+COM.MLE.BP<-multicmpests(XY, startvalues = c(9, 1, 0, 0.1, 0.4, 0.5))
+
+
+
+#par
+#[1] 9.8874868747 0.9996993170 0.0003357642 0.4053928528 0.0894574896 0.5048138933
+
+#negll
+#[1] 2237.977
+
+
+#Likelihood.ratio.test /p.value
+#6.614671/	0.0101142
+
+
+
+```
+
+
+
+```{r MLE using Bi-Bernoulli data,include=TRUE}
+
+# MLE of Bi-poission(X,Y) 
+
+#MLE of Bi-Bernoulli
+
+#MLE of Bi-Geometric 
+
+#MLE of COM-Poission 
+
+```
+
+
+```{r MLE using Bi-Geometric data,include=TRUE}
+
+# MLE of Bi-poission(X,Y) 
+
+#MLE of Bi-Bernoulli
+
+#MLE of Bi-Geometric 
+
+#MLE of COM-Poission 
+```
