@@ -6,10 +6,12 @@ output: html_document
 ---
 
 
+#01. Poission data (500 pairs)
 
 ```{r poission data, include=TRUE}
 
 library(stats)
+library(AER)
 
 #set up data with lamb= 1,4,5
 Pois1<-rpois(500,1)
@@ -35,18 +37,49 @@ var(Y)
 as.matrix(X)
 as.matrix(Y)
 cor(as.matrix(X),as.matrix(Y)) 
+
+as.matrix(XY)
 #dispersion 
+fit.bp1<-glm(XY[,1]~XY[,2],family = poisson())
+dispersiontest(fit.bp1) #0.514
+
+fit.bp2<-glm(XY[,2]~XY[,1],family = poisson())
+dispersiontest(fit.bp2) #0.536
 ```
 
+
+
+
+#02. Bivariate Bernoulli data (500 pairs)
 ```{r bivariate bernoulli data,include=TRUE}
-library(glmmTMB)
+library(stats4)
+library(splines)
+library(VGAM)
 
 #generate data 
-library(MM)
+BB.data0<-rbinom2.or(500,mu1=0.3,exchangeable = TRUE)
+dbinom2.or(mu1=0.3,exchangeable = 
+             TRUE, oratio = exp(1.5)
+)
+BB.data<-as.matrix(BB.data0)
+BBy1.mean<-mean(BB.data[,1])
+BBy2.mean<-mean(BB.data[,2])
 
+BBy1.var<-var(BB.data[,1])
+BBy2.var<-var(BB.data[,2])
+
+BB.cor<-cor(BB.data[,1],BB.data[,2])
+
+#dispersion 
+fit.bb1<-glm(BB.data[,1]~BB.data[,2],family = poisson())
+dispersiontest(fit.bb1) # 0.724
+
+fit.bb2<-glm(BB.data[,2]~BB.data[,1],family = poisson())
+dispersiontest(fit.bb2)# 0.726
 ```
 
 
+#03. Bivaraite Geometric data (500 pairs)
 ```{r bivariate geometric data, include=TRUE}
 
 
@@ -54,15 +87,20 @@ library(MM)
 
 
 
+
+
+#1. MLE using Bivariate Poission dataset 
 ```{r MLE using Bi-Poission data,include=TRUE}
 library(poilog)
 library(stats)
 library(multicmp)
 
+
+
 # MLE of Bi-poission(X,Y) 
 
-XY1<-rbipoilog(500,mu1 = 1,mu2=4,sig1=1,sig2=1,rho=0.5)
-MLE.BP0<-bipoilogMLE(XY1)
+BP.data<-rbipoilog(500,mu1 = 1,mu2=4,sig1=1,sig2=1,rho=0.5)
+MLE.BP0<-bipoilogMLE(BP.data,nboot=20)
 cbind(MLE.BP0$par[1],MLE.BP0$par[2],mean(X)-MLE.BP0$par[1],mean(Y)-MLE.BP0$par[2])
 
 #MLE of Bi-Bernoulli
@@ -73,6 +111,12 @@ cbind(MLE.BP0$par[1],MLE.BP0$par[2],mean(X)-MLE.BP0$par[1],mean(Y)-MLE.BP0$par[2
 XY<-cbind(X,Y)
 COM.MLE.BP<-multicmpests(XY, startvalues = c(9, 1, 0, 0.1, 0.4, 0.5))
 
+est.l1<-COM.MLE.BP$par[1]*COM.MLE.BP$par[5]
+est.l2<-COM.MLE.BP$par[1]*COM.MLE.BP$par[4]
+est.l3<-COM.MLE.BP$par[1]*COM.MLE.BP$par[6]
+
+fit.hypmv
+AIC(COM.MLE.BP)
 
 
 #par
@@ -91,9 +135,17 @@ COM.MLE.BP<-multicmpests(XY, startvalues = c(9, 1, 0, 0.1, 0.4, 0.5))
 
 
 
+
+
+#2. MLE using Bivariate Bernoulli dataset 
 ```{r MLE using Bi-Bernoulli data,include=TRUE}
 
 # MLE of Bi-poission(X,Y) 
+
+BB2<-rbipoilog(500,mu1 = 0,mu2=0,sig1=0.5,sig2=0.5,rho=-0.1)
+MLE.BB2<-bipoilogMLE(BB2,nboot=20)
+
+cbind(MLE.BB2$par[1],MLE.BB2$par[2],BBy1.mean-MLE.BB2$par[1],BBy2.mean-MLE.BB2$par[2])
 
 #MLE of Bi-Bernoulli
 
@@ -104,6 +156,11 @@ COM.MLE.BP<-multicmpests(XY, startvalues = c(9, 1, 0, 0.1, 0.4, 0.5))
 ```
 
 
+
+
+
+
+#MLE using bivariate geometric dataset 
 ```{r MLE using Bi-Geometric data,include=TRUE}
 
 # MLE of Bi-poission(X,Y) 
